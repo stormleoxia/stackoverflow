@@ -6,7 +6,8 @@ using NUnit.Framework;
 
 namespace DynamicUsage.Benchmarks
 {
-    public class ExpressionCall : IBenchmark
+    [TestFixture]
+    public sealed class ExpressionCall : IBenchmark
     {
         private readonly MyAnotherClass _instanceTwo;
         private readonly MyClass _instanceOne;
@@ -31,7 +32,7 @@ namespace DynamicUsage.Benchmarks
         }
 
                 public string Name {
-            get { return "Linq Expression Call"; }
+            get { return "Linq Expression call"; }
         }
 
         [Test]

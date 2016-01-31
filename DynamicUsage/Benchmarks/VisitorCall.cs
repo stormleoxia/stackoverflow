@@ -3,7 +3,8 @@ using NUnit.Framework;
 
 namespace DynamicUsage.Benchmarks
 {
-    internal class VisitorCall : IBenchmark
+    [TestFixture]
+    public sealed class VisitorCall : IBenchmark
     {
         private readonly MyClass _instanceOne;
         private readonly MyAnotherClass _instanceTwo;
@@ -20,7 +21,7 @@ namespace DynamicUsage.Benchmarks
         }
 
                 public string Name {
-            get { return "Visitor Accept/Visit Call"; }
+            get { return "Visitor Accept/Visit call"; }
         }
 
         public void Benchmark()
@@ -29,6 +30,7 @@ namespace DynamicUsage.Benchmarks
             _instanceTwo.Accept(_visitor);
         }
 
+        [Test]
         public void VerifyAssertions()
         {
             List<int> list = new List<int>();

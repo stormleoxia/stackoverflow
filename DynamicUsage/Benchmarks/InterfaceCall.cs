@@ -3,7 +3,8 @@ using NUnit.Framework;
 
 namespace DynamicUsage.Benchmarks
 {
-    internal class InterfaceCall : IBenchmark
+    [TestFixture]
+    public sealed class InterfaceCall : IBenchmark
     {
         private readonly IInvoker _instanceOne;
         private readonly IInvoker _instanceTwo;
@@ -18,7 +19,7 @@ namespace DynamicUsage.Benchmarks
         }
 
         public string Name {
-            get { return "Interface virtual Call"; }
+            get { return "Interface virtual call"; }
         }
 
         public void Benchmark()
@@ -27,6 +28,7 @@ namespace DynamicUsage.Benchmarks
             _instanceTwo.InvokeMethod();
         }
 
+        [Test]
         public void VerifyAssertions()
         {
             List<int> list = new List<int>();

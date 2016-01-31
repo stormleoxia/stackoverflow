@@ -3,7 +3,8 @@ using NUnit.Framework;
 
 namespace DynamicUsage.Benchmarks
 {
-    internal sealed class ClassCall : IBenchmark
+    [TestFixture]
+    public sealed class ClassCall : IBenchmark
     {
         private readonly MyClass _instanceOne;
         private readonly MyAnotherClass _instanceTwo;
@@ -18,7 +19,7 @@ namespace DynamicUsage.Benchmarks
         }
 
                 public string Name {
-            get { return "Class standard Call"; }
+            get { return "Class standard call"; }
         }
 
         public void Benchmark()
@@ -27,6 +28,7 @@ namespace DynamicUsage.Benchmarks
             _instanceTwo.InvokeMethod();
         }
 
+        [Test]
         public void VerifyAssertions()
         {
             List<int> list = new List<int>();

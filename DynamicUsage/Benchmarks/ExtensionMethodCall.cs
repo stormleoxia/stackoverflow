@@ -3,7 +3,8 @@ using NUnit.Framework;
 
 namespace DynamicUsage.Benchmarks
 {
-    internal class ExtensionMethodCall : IBenchmark
+    [TestFixture]
+    public sealed class ExtensionMethodCall : IBenchmark
     {
         private readonly MyClass _instanceOne;
         private readonly MyAnotherClass _instanceTwo;
@@ -35,7 +36,7 @@ namespace DynamicUsage.Benchmarks
         }
 
         public string Name {
-            get { return "Extension Method Call"; }
+            get { return "Extension Method call"; }
         }    }
 
     public static class Invoker

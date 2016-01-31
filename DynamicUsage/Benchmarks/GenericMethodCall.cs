@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace DynamicUsage.Benchmarks
 {
     [TestFixture]
-    public class GenericMethodCall : IBenchmark
+    public sealed class GenericMethodCall : IBenchmark
     {
         private readonly MyClass _instanceOne;
         private readonly MyAnotherClass _instanceTwo;
@@ -19,7 +19,7 @@ namespace DynamicUsage.Benchmarks
         }
 
                 public string Name {
-            get { return "Generic Method Call"; }
+            get { return "Generic Method call"; }
         }
 
         public void Benchmark()

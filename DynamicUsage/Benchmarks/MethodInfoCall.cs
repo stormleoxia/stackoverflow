@@ -4,7 +4,8 @@ using NUnit.Framework;
 
 namespace DynamicUsage.Benchmarks
 {
-    public class MethodInfoCall : IBenchmark
+    [TestFixture]
+    public sealed class MethodInfoCall : IBenchmark
     {
         private readonly MethodInfoCaller<MyClass> _instanceOneCaller;
         private readonly MyAnotherClass _instanceTwo;
@@ -23,7 +24,7 @@ namespace DynamicUsage.Benchmarks
         }
 
                 public string Name {
-            get { return "MethodInfo Invoke Call"; }
+            get { return "MethodInfo Invoke call"; }
         }
 
         public void Benchmark()

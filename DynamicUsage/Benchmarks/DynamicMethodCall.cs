@@ -1,27 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Reflection;
+using System.Reflection.Emit;
 using NUnit.Framework;
 
 namespace DynamicUsage.Benchmarks
 {
     [TestFixture]
-    public sealed class DelegateCall : IBenchmark
+    public sealed class DynamicMethodCall : IBenchmark
     {
-        private readonly MyAnotherClass _instanceTwo;
         private readonly MyClass _instanceOne;
-        private readonly DelegateCaller<MyClass> _instanceOneCaller;
-        private readonly DelegateCaller<MyAnotherClass> _instanceTwoCaller;
+        private readonly MyAnotherClass _instanceTwo;
+        private readonly DynamicMethodCaller<MyClass> _instanceOneCaller = new DynamicMethodCaller<MyClass>();
+        private readonly DynamicMethodCaller<MyAnotherClass> _instanceTwoCaller = new DynamicMethodCaller<MyAnotherClass>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:System.Object"/> class.
         /// </summary>
-        public DelegateCall()
+        public DynamicMethodCall()
         {
             _instanceOne = new MyClass();
             _instanceTwo = new MyAnotherClass();
-            _instanceOneCaller = new DelegateCaller<MyClass>();
-            _instanceTwoCaller = new DelegateCaller<MyAnotherClass>();
+        }
+
+        public string Name {
+            get { return "DynamicMethod.Emit call"; }
         }
 
         public void Benchmark()
@@ -40,29 +44,27 @@ namespace DynamicUsage.Benchmarks
             Assert.IsTrue(list.Contains(1));
             Assert.IsTrue(list.Contains(2));
         }
-
-        public string Name {
-            get { return "MethodInfo.CreateDelegate call"; }
-        }
     }
 
-    internal class DelegateCaller<T>
+    internal class DynamicMethodCaller<T>
     {
         private readonly MethodInfo _method;
         private readonly Delegate _delegate; 
-        private static readonly object[] _emptyParameters = new object[0];
-        private Func<T, int> _func;
-
-        private delegate int MyDelegate(T instance);
+        private readonly Func<T, int> _func;
+        private DynamicMethod _dynamicMethod;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:System.Object"/> class.
         /// </summary>
-        public DelegateCaller()
+        public DynamicMethodCaller()
         {
             _method = typeof (T).GetMethod("InvokeMethod");
-            _delegate = _method.CreateDelegate(typeof(Func<T, int>));
-            _func = (Func<T, int>) _delegate;
+            _dynamicMethod = new DynamicMethod("InvokeMethod", typeof (int), new []{typeof(T)}, GetType().Module);
+            ILGenerator il = _dynamicMethod.GetILGenerator();
+            il.Emit(OpCodes.Ldarg_0);
+            il.Emit(OpCodes.Call, _method);
+            il.Emit(OpCodes.Ret);
+            _func = (Func<T, int>) _dynamicMethod.CreateDelegate(typeof (Func<T, int>));
         }
 
         public int InvokeMethod(T instance)
@@ -72,7 +74,7 @@ namespace DynamicUsage.Benchmarks
 
         public int DynamicInvokeMethod(T instance)
         {
-            return (int)_delegate.DynamicInvoke(instance, _emptyParameters);
+            return (int)_delegate.DynamicInvoke(instance);
         }
     }
 }

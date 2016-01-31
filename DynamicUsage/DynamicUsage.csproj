@@ -49,6 +49,7 @@
     <Compile Include="Benchmarks\ClassCall.cs" />
     <Compile Include="Benchmarks\DelegateCall.cs" />
     <Compile Include="Benchmarks\DynamicCall.cs" />
+    <Compile Include="Benchmarks\DynamicMethodCall.cs" />
     <Compile Include="Benchmarks\ExpressionCall.cs" />
     <Compile Include="Benchmarks\ExtensionMethodCall.cs" />
     <Compile Include="Benchmarks\GenericMethodCall.cs" />

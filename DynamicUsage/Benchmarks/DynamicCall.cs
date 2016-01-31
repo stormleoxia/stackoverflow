@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace DynamicUsage.Benchmarks
 {
     [TestFixture]
-    public class DynamicCall : IBenchmark
+    public sealed class DynamicCall : IBenchmark
     {
         private readonly dynamic _instanceOne;
         private readonly dynamic _instanceTwo;
@@ -35,7 +35,7 @@ namespace DynamicUsage.Benchmarks
             Assert.IsTrue(list.Contains(2));
         }
 
-        public string Name { get { return "Keyword dynamic Call"; } }
+        public string Name { get { return "Keyword dynamic call"; } }
     }
 
     public interface IBenchmark
