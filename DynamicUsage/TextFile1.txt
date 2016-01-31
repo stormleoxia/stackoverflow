@@ -1,0 +1,84 @@
+﻿The short answer is YES, it is a bad practice to use dynamic.
+
+Why?
+
+dynamic keyword refers to type late binding, which means the system will check type only during execution instead of
+during compilation. It will then mean that user, instead of programmer, is left to discover the potential error. The error could be
+a MissingMethodException, but it could be also a not intended call to an existing method with a bad behavior.
+Imagine a call to a method that ends in computing a bad price or in computing a bad level of oxygen.
+
+Generally speaking, type checking helps to get deterministic computing, and so, when you can, you should use it.
+	http://programmers.stackexchange.com/questions/135160/shortcomings-of-using-dynamic-types-in-c
+
+However, dynamic can help us in a number of situation.
+	Interop https://msdn.microsoft.com/en-us/library/dd264733.aspx
+	Call on the same method signature on classes without any relationships (classes from different third parties)
+
+But remember that code base is evolving throughout the application life cycle and even if dynamic seems ok now,
+it set a precedent which can implies an increase of dynamic keyword usage by your team. It can lead to increased
+maintenance costs (in case the above stated signature evolves, you can notice it too late). Of course, you could
+rely on unit tests, non regression human tests and so on. But when you have to choose between human discipline related
+quality and automatically checked by computer related quality, choose the later. It's less error prone.
+
+In your case, it seems you can use the common inheritance scheme (the first one below and the one you mention in your question),
+as dynamic won't give you any additional benefit (it will just cost you more processing power and make you incurring 
+the risk of future potential bugs).
+
+It depends on whether you can change code of MyClass hierarchy and/or Caller.InvokeMethod, but let's enumerate
+the different possible alternatives to dynamic:
+
+	The most common is using virtual call like this instance.InvokeMethod() with inheritance calling the right implementation.
+
+	public abstract class MyBaseClass : IInvoker { public abstract void InvokeMethod(); }
+    public class MyAnotherClass : MyBaseClass { public override void InvokeMethod() { /* Do something */ } }
+	public class MyClass : MyBaseClass { public override void InvokeMethod() { /* Do something */ } }
+
+	Another a little less performant is by using Extension Methods
+
+	public static class InvokerEx:
+	{
+		public static void Invoke(this MyAnotherClass c) { /* Do something */ } }
+		public static void Invoke(this MyClass c) { /* Do something */ } }
+	}
+
+	If there are several "visitors" of MyBaseClass hierarchy, you can use the Visitor pattern:
+	public interface IVisitor 
+	{
+		void Visit(this MyAnotherClass c);
+		void Visit(this MyClass c);
+	}
+	
+	public abstract class MyBaseClass : IInvoker { public abstract void Accept(IVisitor visitor); }
+    public class MyAnotherClass : MyBaseClass { public override void Accept(IVisitor visitor) { visitor.Visit(this); } }
+	public class MyClass : MyBaseClass { public override void Accept(IVisitor visitor) { visitor.Visit(this); } }
+
+	Other variants though not very useful here :
+	Generic method:
+
+	public void InvokeMethod<T>(T instance) where T : IInvoker { return instance.InvokeMethod(); }
+
+I've benchmarked the different methods to get an order of magnitude (for 10 Millions of call) :
+
+	For Dynamic:
+	Elapsed: 00:00:01.4282030
+	Call/ms: 7002
+	For Generic Methods:
+	Elapsed: 00:00:00.3498007
+	Call/ms: 28653
+	For Extension Methods:
+	Elapsed: 00:00:00.3096562
+	Call/ms: 32362
+	For Interface virtual call:
+	Elapsed: 00:00:00.2588716
+	Call/ms: 38759
+	For Visitor call:
+	Elapsed: 00:00:00.5452984
+	Call/ms: 18348
+
+
+
+
+
+
+	
+
