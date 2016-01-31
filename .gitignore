@@ -1,3 +1,14 @@
 /DynamicUsage/bin
 /DynamicUsage/obj
 /packages
+/Debug
+/Release
+/DynamicMethodEmitter/bin
+/DynamicMethodEmitter/bin
+/DynamicMethodEmitter/obj
+/MethodContainer/Release
+/MethodContainer/Debug
+/MethodContainer/Release
+/ipch/METHODCONTAINER-1cb696a3/*.ipch
+/*.opendb
+/*.sdf
