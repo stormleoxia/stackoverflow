@@ -4,31 +4,25 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DynamicUsage.Benchmarks;
 using Lx.Benchmark;
+using SplitString.Benchmarks;
 
-namespace DynamicUsage
+namespace SplitString
 {
-    internal class Program
+    class Program
     {
-
         private static readonly IBenchmark[] _benchmarks = new IBenchmark[]
         {
-            new ClassCall(), 
-            new DelegateCall(), 
-            new DynamicCall(),
-            new DynamicMethodCall(), 
-            new ExpressionCall(), 
-            new ExtensionMethodCall(), 
-            new GenericMethodCall(),
-            new InterfaceCall(),
-            new MethodInfoCall(), 
-            new VisitorCall(),
+            new StringSplitLines(),
+            new RegexSplitLines(),
+            new RegexCompiledSplitLines(),
+            new RegexCompiledSplitPattern2Lines(),
+            new RegexCompiledToAssemblySplitLines(),
         };
 
         private static void Main(string[] args)
         {
-            var runner = new BenchmarkRunner(10000000);
+            var runner = new BenchmarkRunner(200000);
             foreach (var benchmark in _benchmarks)
             {
                 runner.Run(benchmark);
@@ -37,9 +31,8 @@ namespace DynamicUsage
             if (Debugger.IsAttached)
             {
                 Console.ReadLine();
+
             }
         }
-
-
     }
 }

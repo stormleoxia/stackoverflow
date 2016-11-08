@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Lx.Benchmark;
 using NUnit.Framework;
 
 namespace DynamicUsage.Benchmarks

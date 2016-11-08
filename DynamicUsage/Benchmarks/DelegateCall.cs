@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Lx.Benchmark;
 using NUnit.Framework;
 
 namespace DynamicUsage.Benchmarks

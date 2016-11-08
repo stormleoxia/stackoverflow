@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Lx.Benchmark;
 using NUnit.Framework;
 
 namespace DynamicUsage.Benchmarks
@@ -36,12 +37,5 @@ namespace DynamicUsage.Benchmarks
         }
 
         public string Name { get { return "Keyword dynamic call"; } }
-    }
-
-    public interface IBenchmark
-    {
-        void Benchmark();
-        void VerifyAssertions();
-        string Name { get; }
     }
 }

@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicUsage", "DynamicUsage\DynamicUsage.csproj", "{CC77B4C5-7CEE-4A91-8740-BAD13855ACDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SplitString", "SplitString\SplitString.csproj", "{2BF1D90B-5507-4AB5-9B31-88E857565749}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lx.Benchmark", "Lx.Benchmark\Lx.Benchmark.csproj", "{B78C29DA-0453-4A76-A86C-F278DD30814C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{CC77B4C5-7CEE-4A91-8740-BAD13855ACDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC77B4C5-7CEE-4A91-8740-BAD13855ACDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC77B4C5-7CEE-4A91-8740-BAD13855ACDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BF1D90B-5507-4AB5-9B31-88E857565749}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BF1D90B-5507-4AB5-9B31-88E857565749}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BF1D90B-5507-4AB5-9B31-88E857565749}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BF1D90B-5507-4AB5-9B31-88E857565749}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B78C29DA-0453-4A76-A86C-F278DD30814C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B78C29DA-0453-4A76-A86C-F278DD30814C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B78C29DA-0453-4A76-A86C-F278DD30814C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B78C29DA-0453-4A76-A86C-F278DD30814C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

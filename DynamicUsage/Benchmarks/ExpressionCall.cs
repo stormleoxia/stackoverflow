@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Reflection;
+using Lx.Benchmark;
 using NUnit.Framework;
 
 namespace DynamicUsage.Benchmarks

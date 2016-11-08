@@ -1,6 +1,6 @@
-﻿namespace DynamicUsage
+﻿namespace Lx.Benchmark
 {
-    internal class BenchmarkResult
+    public class BenchmarkResult
     {
         public string Name { get; private set; }
         public long ElapsedMilliseconds { get; private set; }
