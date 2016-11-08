@@ -5,3 +5,14 @@
 /SplitString/obj
 /Lx.Benchmark/obj
 /Lx.Benchmark/bin
+/Debug
+/Release
+/DynamicMethodEmitter/bin
+/DynamicMethodEmitter/bin
+/DynamicMethodEmitter/obj
+/MethodContainer/Release
+/MethodContainer/Debug
+/MethodContainer/Release
+/ipch/METHODCONTAINER-1cb696a3/*.ipch
+/*.opendb
+/*.sdf
