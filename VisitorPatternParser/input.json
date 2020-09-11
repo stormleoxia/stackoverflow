@@ -1,0 +1,35 @@
+﻿  {
+    "Name": "Method",
+    "Value": "And",
+    "Childs": [{
+        "Name": "Method",
+        "Value": "And",
+        "Childs": [{
+            "Name": "Operator",
+            "Value": "IsEqual",
+            "Childs": [{
+                "Name": "Name",
+                "Value": "5",
+                "Childs": []
+            }]
+        },
+        {
+            "Name": "Operator",
+            "Value": "IsEqual",
+            "Childs": [{
+                "Name": "Name",
+                "Value": "6",
+                "Childs": []
+            }]
+        }]
+    },
+    {
+        "Name": "Operator",
+        "Value": "IsEqual",
+        "Childs": [{
+            "Name": "Name",
+            "Value": "3",
+            "Childs": []
+        }]
+    }]
+}

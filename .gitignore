@@ -16,3 +16,8 @@
 /ipch/METHODCONTAINER-1cb696a3/*.ipch
 /*.opendb
 /*.sdf
+/.vs
+VisitorPattern/bin
+VisitorPattern/obj
+VisitorPatternParser/bin
+VisitorPatternParser/obj
