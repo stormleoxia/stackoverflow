@@ -21,3 +21,5 @@ VisitorPattern/bin
 VisitorPattern/obj
 VisitorPatternParser/bin
 VisitorPatternParser/obj
+bin/
+obj/
